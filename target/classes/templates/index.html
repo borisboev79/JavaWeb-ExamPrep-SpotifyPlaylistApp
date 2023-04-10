@@ -17,7 +17,7 @@
             for styles of music you prefer.</p>
         <hr class="my-3 bg-white w-75"/>
 
-        <h3>
+        <h3 th:if="${@loggedUser.isEmpty()}">
             <a class="text-primary" th:href="@{/auth/login}">Login</a>
             if you have an account or
             <a class="text-primary" th:href="@{/auth/register}">Register</a>

@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@PasswordMatch
+@PasswordMatch(message = "Passwords don't match!")
 @ValidateUniqueFields
 public class UserRegisterModel {
 
