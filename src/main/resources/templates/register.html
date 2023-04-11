@@ -57,7 +57,7 @@
                    th:field="*{confirmPassword}"
                    th:errorclass="bg-danger"
             />
-            <small th:if="${#fields.hasErrors('confirmPassword')}" class="text-danger">Passwords don't match</small>
+            <small th:if="${#fields.hasErrors('*')}" th:errorclass="error" th:errors="${userRegisterModel}" class="text-danger">Passwords don't match</small>
         </div>
 
         <div class="button-holder d-flex justify-content-center">
