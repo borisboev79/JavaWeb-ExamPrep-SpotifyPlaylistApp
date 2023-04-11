@@ -51,14 +51,15 @@
                 <label for="style" class="h4 mb-2">Style</label>
             </div>
 
-            <select class="browser-default custom-select" id="style" name="style">
+            <select class="browser-default custom-select" id="style" name="style" th:errorclass="bg-danger">
                 <option value="">Select style</option>
-                <option value="POP">Pop</option>
-                <option value="ROCK">Rock</option>
-                <option value="JAZZ">Jazz</option>
+                <option th:each="style : ${styles}"
+                        th:text="${style}"
+                        th:selected="${style} == *{style}"></option>
+
             </select>
 
-            <small>Style error message</small>
+            <small th:if="${#fields.hasErrors('style')}" class="text-danger">Style error message</small>
         </div>
 
         <div class="button-holder d-flex justify-content-center">

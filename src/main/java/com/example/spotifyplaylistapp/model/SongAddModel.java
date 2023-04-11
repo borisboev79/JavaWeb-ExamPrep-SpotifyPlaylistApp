@@ -1,6 +1,5 @@
 package com.example.spotifyplaylistapp.model;
 
-import com.example.spotifyplaylistapp.model.entity.StyleEntity;
 import com.example.spotifyplaylistapp.model.enums.Style;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -34,6 +33,7 @@ public class SongAddModel {
     private LocalDate releaseDate;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private Style style;
 
 }

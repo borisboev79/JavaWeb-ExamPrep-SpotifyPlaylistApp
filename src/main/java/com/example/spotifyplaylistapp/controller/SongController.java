@@ -1,10 +1,13 @@
 package com.example.spotifyplaylistapp.controller;
 
 import com.example.spotifyplaylistapp.model.SongAddModel;
+import com.example.spotifyplaylistapp.model.enums.Style;
 import com.example.spotifyplaylistapp.service.song.SongService;
+import com.example.spotifyplaylistapp.service.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,10 +20,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class SongController {
 
     private final SongService songService;
+    private final UserService userService;
 
     @Autowired
-    public SongController(SongService songService) {
+    public SongController(SongService songService, UserService userService) {
         this.songService = songService;
+        this.userService = userService;
     }
 
 
@@ -30,7 +35,8 @@ public class SongController {
     }
 
     @GetMapping("/add")
-    public String getAddSong(){
+    public String getAddSong(Model model){
+        model.addAttribute("styles", Style.values());
         return "song-add";
     }
 
@@ -49,6 +55,13 @@ public class SongController {
 
         this.songService.addSong(songAddModel);
 
+        return "redirect:/home";
+    }
+
+    @GetMapping("/remove")
+    public String buyAllProducts() {
+
+        this.userService.removeAllSongs();
         return "redirect:/home";
     }
 

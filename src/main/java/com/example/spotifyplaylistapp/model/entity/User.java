@@ -8,7 +8,7 @@ import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,9 +29,8 @@ public class User extends BaseEntity {
     private String email;
 
     @ManyToMany
-    (mappedBy = "users", targetEntity = Song.class)
     @Fetch(FetchMode.JOIN)
-    private List<Song> playlist;
+    private Set<Song> playlist;
 
 
 }

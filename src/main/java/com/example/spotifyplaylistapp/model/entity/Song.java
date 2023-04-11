@@ -1,12 +1,14 @@
 package com.example.spotifyplaylistapp.model.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -15,7 +17,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "songs")
-public class Song extends BaseEntity{
+public class Song extends BaseEntity {
 
     @Column(nullable = false)
     private String performer;
@@ -29,12 +31,12 @@ public class Song extends BaseEntity{
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    @ManyToMany
-    private List<User> users;
-
     @ManyToOne
     @Fetch(FetchMode.JOIN)
     private StyleEntity style;
+
+
+
 
 
 }
