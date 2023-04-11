@@ -8,38 +8,42 @@
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add song</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
 
-    <form class="mx-auto w-25 bg-blur rounded" method="" action="/">
+    <form class="mx-auto w-25 bg-blur rounded" th:method="POST" th:action="@{/songs/add}"
+    th:object="${songAddModel}">
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="performer" class="h4 mb-2">Performer</label>
+                <label th:for="performer" class="h4 mb-2">Performer</label>
             </div>
-            <input type="text" class="form-control" id="performer" name="performer"/>
-            <small>Performer error message</small>
+            <input type="text" class="form-control" th:field="*{performer}"
+            th:errorclass="bg-danger"/>
+            <small th:if="${#fields.hasErrors('performer')}" class="text-danger">Performer error message</small>
         </div>
 
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
-                <label for="title" class="h4 mb-2 text-white">Title</label>
+                <label th:for="title" class="h4 mb-2 text-white">Title</label>
             </div>
-            <input type="text" class="form-control" id="title" name="title"/>
-            <small>Title error</small>
+            <input type="text" class="form-control" th:field="*{title}"
+                   th:errorclass="bg-danger"/>
+            <small th:if="${#fields.hasErrors('title')}" class="text-danger">Title error</small>
         </div>
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="releaseDate" class="h4 mb-2">Release date</label>
+                <label th:for="releaseDate" class="h4 mb-2">Release date</label>
             </div>
-            <input type="date" class="form-control" id="releaseDate" name="releaseDate"/>
-            <small>Release date error</small>
+            <input type="date" class="form-control" th:field="*{releaseDate}"
+                   th:errorclass="bg-danger"/>
+            <small th:if="${#fields.hasErrors('releaseDate')}" class="text-danger">Release date cannot be in the future</small>
         </div>
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="duration" class="h4 mb-2">Duration in seconds</label>
+                <label th:for="duration" class="h4 mb-2">Duration in seconds</label>
             </div>
-            <input type="number" step="1" class="form-control" id="duration" name="duration"/>
-            <small>Duration error message</small>
+            <input type="number" step="1" class="form-control" th:field="*{duration}" th:errorclass="bg-danger"/>
+            <small th:if="${#fields.hasErrors('duration')}" class="text-danger">Duration error message</small>
         </div>
 
         <div class="form-group">

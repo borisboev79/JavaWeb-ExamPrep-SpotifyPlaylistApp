@@ -2,6 +2,7 @@ package com.example.spotifyplaylistapp.controller;
 
 
 import com.example.spotifyplaylistapp.helper.LoggedUser;
+import com.example.spotifyplaylistapp.service.song.SongService;
 import com.example.spotifyplaylistapp.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,17 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class HomeController {
     private final LoggedUser loggedUser;
-  //  private final OfferService offerService;
+    private final SongService offerService;
     private final UserService userService;
 
 
     @Autowired
     public HomeController(LoggedUser loggedUser,
-                        //  OfferService offerService,
-                          UserService userService) {
-        this.loggedUser = loggedUser;
-   //     this.offerService = offerService;
+                          SongService offerService, UserService userService) {
 
+        this.loggedUser = loggedUser;
+        this.offerService = offerService;
         this.userService = userService;
     }
 
